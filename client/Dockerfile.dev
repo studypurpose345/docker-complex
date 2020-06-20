@@ -1,0 +1,17 @@
+# Base Image
+FROM node:alpine
+
+# Setting Working Directory
+WORKDIR '/app'
+
+# Copying Package.json for not installing npm dependencies without a change in package.json
+COPY ./package.json ./
+
+# Running npm install prior copying other files
+RUN npm install
+
+# Copying every other files
+COPY . .
+
+# Running React App
+CMD ["npm", "run", "start"]
